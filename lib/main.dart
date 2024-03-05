@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velik/pages/bikes_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,7 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(
+              onPressed: () { 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BikesPage()),
+                  ); },
+                child: const Text('data'))
+            
           ],
+          
         ),
       ),
       floatingActionButton: FloatingActionButton(
