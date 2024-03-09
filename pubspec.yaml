@@ -14,6 +14,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   hexcolor: 3.0.1
   flutter_svg: 2.0.10
+  carousel_slider: 4.2.1
+  get: 4.6.6
   
 
 dev_dependencies:
