@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  hexcolor: 3.0.1
   
 
 dev_dependencies:
@@ -24,6 +25,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: m_plus
+      fonts:
+        - asset: lib/utils/fonts/M_PLUS_Rounded_1c/MPLUSRounded1c-Regular.TTF
   assets:
     - assets/images/
 
