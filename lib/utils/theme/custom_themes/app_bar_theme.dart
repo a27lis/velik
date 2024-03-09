@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:velik/utils/constants/colors.dart';
 
 
+
 class TAppBarTheme {
   TAppBarTheme._();
 
@@ -14,7 +15,8 @@ class TAppBarTheme {
     systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: TColors.background, // Цвет статусной строки
       statusBarIconBrightness: Brightness.dark,
-      )  
+      ),
+    titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TColors.textColor, fontFamily: "m_plus_extra"),
 
   );
 }

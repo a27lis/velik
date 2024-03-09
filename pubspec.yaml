@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   hexcolor: 3.0.1
+  flutter_svg: 2.0.10
   
 
 dev_dependencies:
@@ -29,7 +30,11 @@ flutter:
     - family: m_plus
       fonts:
         - asset: lib/utils/fonts/M_PLUS_Rounded_1c/MPLUSRounded1c-Regular.TTF
+    - family: m_plus_extra
+      fonts:
+        - asset: lib/utils/fonts/M_PLUS_Rounded_1c/MPLUSRounded1c-ExtraBold.TTF
   assets:
     - assets/images/
+    - assets/svg/
 
 

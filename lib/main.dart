@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:velik/utils/constants/colors.dart';
 import 'package:velik/utils/theme/theme.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const App());
@@ -32,15 +31,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    super.initState();
-    
-
-    
+    super.initState();    
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       leading: Transform.translate(
+        offset: const Offset(24, 0),
+        child: SvgPicture.asset('assets/svg/logo.svg'),
+       ),
+       titleSpacing: 32,
+       title: const Text("VELIK"),
         ),
       body: Center(
         child: Text(
