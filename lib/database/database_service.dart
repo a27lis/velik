@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:velik/database/bike_db.dart';
@@ -36,7 +38,9 @@ Database? _database;
   Future<void> create(Database database, int version) async {
 
     await BikeDB().createTable(database);
+    log("create table in create");
     await BikeDB().addElements(database);
+    log("add elements in create");
 
   }
     

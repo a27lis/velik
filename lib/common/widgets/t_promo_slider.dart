@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:velik/common/widgets/t_circular_container.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/features/controllers/home_controller.dart';
@@ -32,7 +31,7 @@ class TPromoSlider extends StatelessWidget {
                     TRoundedImage(imageUrl: "assets/images/gallery3.png"),
                   ],
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 8),
                 Center(
                   child: Obx(
                     () => Row(

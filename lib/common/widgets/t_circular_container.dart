@@ -36,7 +36,7 @@ class _TCircularContainerState extends State<TCircularContainer> {
         borderRadius: BorderRadius.circular(widget.radius),
         color: widget.backgroundColor,
       ),
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.fastOutSlowIn,
     );
   }

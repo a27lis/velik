@@ -34,15 +34,19 @@ class BikeDB {
     log("add el");
 
     await database.rawInsert("""INSERT INTO $tableName (brand, name, type, frame, fork, speed, tires, brake, sizeOfWheels, equipment, favorite, picture) 
- VALUES ('GT','0aaaaaaaa','горный','frame','fork',24,'maxxis','v','27.5','best',0,'assets/images/outleap_machine.jpg'), ('я больной','бьлдкпдк','лялялялля','','fork',24,'maxxis','v','27.5','best',0,'assets/images/outleap_machine.jpg');
+ VALUES ('Outleap','Machine','BMX','frame','fork',24,'maxxis','v','27.5','best',1,'assets/images/outleap_machine.jpg'), ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg'),
+ ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg'), ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg'), ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg'),
+ ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg'), ('GT','Aggressor','Горный','','fork',24,'maxxis','v','27.5','best',0,'assets/images/aggressor_sport.jpg');
 """);
 
 
   }
 
   Future<List<Bike>> fetchAll() async {
+    log("fetchall start");
     final database = await DatabaseService().database;
     final bikes = await database.rawQuery('''SELECT * FROM $tableName;''');
+    log("fetchall ended");
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
 }
