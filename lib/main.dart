@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => BikesPage()));
+                     MaterialPageRoute(builder: (context) => const BikesPage()));
                   },
                   child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
                 child: GridView.builder(
                   shrinkWrap: true,
-                  physics:  NeverScrollableScrollPhysics(),
+                  physics:  const NeverScrollableScrollPhysics(),
                   
                               itemCount: bikes.length >= 8 ? 8 : bikes.length,
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
