@@ -43,6 +43,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  int _selectedIndex = 1;
+
+  final List<Widget> _children = [
+    BikesPage(),
+    BikesPage(),
+    BikesPage(),
+    // Добавьте здесь другие экраны
+ ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+ }
+
   Future<List<Bike>>? futureBikes;
   final bikeDB = BikeDB();
   
@@ -179,34 +194,30 @@ class _HomePageState extends State<HomePage> {
                       
                             ),
               ),
-
-
-
-
-              
-
             ],
           ),
         );
+        
                     }
                      
                                 }),
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-        
+      
+        bottomNavigationBar: BottomNavigationBar(
+          
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: "Избранное"),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Главная"),
+            BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: "Настройки"),
+          ],
+          elevation: 4,
+          currentIndex: _selectedIndex,
+          onTap: onTabTapped,
+          selectedItemColor: TColors.accent,
+          backgroundColor: TColors.background,
+          unselectedItemColor: TColors.textColor,
+          showUnselectedLabels: false,
+          selectedLabelStyle: TextStyle(fontFamily: 'm_plus', fontSize: 14, fontWeight: FontWeight.bold),
+        ),
         );
   }
 }
