@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       final bikes = snapshot.data!;
                       return bikes.isEmpty
                           ? const Center(
-                              child: Text('no bikes'),
+                              child: Text('Нет велосипедов'),
                             )
                           : SingleChildScrollView(
           child: Column(
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   physics:  const NeverScrollableScrollPhysics(),
                   
-                              itemCount: bikes.length >= 8 ? 8 : bikes.length,
+                              itemCount: bikes.length >= 4 ? 4 : bikes.length,
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 8,
@@ -147,9 +147,12 @@ class _HomePageState extends State<HomePage> {
                                             Positioned(
                                               top: 0,
                                               left: 0,
+                                              width: 120,
                                               child: Text("${bike.brand} ${bike.name}", 
                                               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w100, color: TColors.textColor, fontFamily: "m_plus_extra"),
-                                              textAlign: TextAlign.left,),
+                                              textAlign: TextAlign.left,
+                                              maxLines: 1,
+                                              ),
                                             ),
                                             Positioned(
                                               top: 16,
@@ -162,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                                             Positioned(
                                               top: 0,
                                               right: 0,
-                                              child: bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 20,) : SvgPicture.asset("assets/svg/favorite.svg", width: 20,),
+                                              child: bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,) : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
                                             ),
 
                                           ],

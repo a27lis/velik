@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
+import 'package:velik/utils/constants/colors.dart';
+import 'package:velik/utils/theme/custom_themes/text_theme.dart';
 
 class BikesPage extends StatefulWidget {
   const BikesPage({super.key});
@@ -27,116 +31,24 @@ class _BikesPageState extends State<BikesPage> {
   }
 
 
-
-
-  // return Column(
-  //                           children: [
-  //                             Container(
-  //                               width: 151,
-  //                               height: 100,
-  //                               child: Stack(
-  //                                 children: [
-  //                                   Positioned(
-  //                                     left: 0,
-  //                                     top: 0,
-  //                                     child: Container(
-  //                                       width: 151,
-  //                                       height: 100,
-  //                                       decoration: ShapeDecoration(
-  //                                         color: Colors.white,
-  //                                         shape: RoundedRectangleBorder(
-  //                                           borderRadius:
-  //                                               BorderRadius.circular(16),
-  //                                         ),
-  //                                       ),
-  //                                     ),
-  //                                   ),
-  //                                   Positioned(
-  //                                     left: 41,
-  //                                     top: 36,
-  //                                     child: Container(
-  //                                       width: 70,
-  //                                       height: 49,
-  //                                       decoration: BoxDecoration(
-  //                                         image: DecorationImage(
-  //                                           image: AssetImage(
-  //                                               bike.picture),
-  //                                           fit: BoxFit.fill,
-  //                                         ),
-  //                                       ),
-  //                                     ),
-  //                                   ),
-  //                                   Positioned(
-  //                                     left: 14,
-  //                                     top: 8,
-  //                                     child: Text(
-  //                                       bike.brand + " " +bike.name,
-  //                                       style: TextStyle(
-  //                                         color: Color(0xFF2A344D),
-  //                                         fontSize: 14,
-  //                                         fontFamily: 'Rounded Mplus 1c',
-  //                                         fontWeight: FontWeight.w900,
-  //                                         height: 0,
-  //                                       ),
-  //                                     ),
-  //                                   ),
-  //                                   Positioned(
-  //                                     left: 14,
-  //                                     top: 23,
-  //                                     child: Text(
-  //                                       bike.type,
-  //                                       style: TextStyle(
-  //                                         color: Color(0xFFB5B5B5),
-  //                                         fontSize: 10,
-  //                                         fontFamily: 'Rounded Mplus 1c',
-  //                                         fontWeight: FontWeight.w500,
-  //                                         height: 0,
-  //                                       ),
-  //                                     ),
-  //                                   ),
-  //                                   Positioned(
-  //                                     left: 131,
-  //                                     top: 10,
-  //                                     child: Container(
-  //                                       width: 12,
-  //                                       height: 12,
-  //                                       child: Stack(
-  //                                         children: [
-  //                                           Positioned(
-  //                                             left: 0,
-  //                                             top: 0,
-  //                                             child: Container(
-  //                                               width: 12,
-  //                                               height: 12,
-  //                                               child: Stack(
-  //                                                 children: [
-  //                                                   Positioned(
-  //                                                     left: 0,
-  //                                                     top: 0,
-  //                                                     child: 
-  //                                                     bike.favorite == 1 ? 
-  //                                                     SvgPicture.asset("assets/svg/favorite_blue.svg" ,
-  //                                                     width: 12,
-  //                                                     height: 12,) : SvgPicture.asset("assets/svg/favorite.svg", height: 12, width: 12)
-  //                                                   )  , 
-  //                                                 ],
-  //                                               ),
-  //                                             ),
-  //                                           ),
-  //                                         ],
-  //                                       ),
-  //                                     ),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                             ),
-  //                           ],
-  //                         );
-
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('bikes'),
+          leading: IconButton(
+    icon: Transform.scale(
+      scale: 1, // Масштаб иконки
+      child: SvgPicture.asset('assets/svg/arrow_back.svg'),
+    ),
+    onPressed: () {
+      Navigator.of(context).pop(); // Возвращаемся на предыдущую страницу
+    },
+ ),
+ automaticallyImplyLeading: false, // Отключаем автоматическое добавление иконки "назад"
+          
+          title: const Text('Все велосипеды',
+          style: TextStyle(fontFamily: 'm_plus', fontWeight: FontWeight.bold),
+          ),
+          
         ),
         body: FutureBuilder<List<Bike>>(
             future: futureBikes,
@@ -148,120 +60,80 @@ class _BikesPageState extends State<BikesPage> {
 
                 return bikes.isEmpty
                     ? const Center(
-                        child: Text('no bikes'),
+                        child: Text('Нет велосипедов'),
                       )
-                    : ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(),
-                        itemCount: bikes.length,
-                        itemBuilder: (context, index) {
-                          final bike = bikes[index];
-                          return Column(
-                            children: [
-                              Container(
-                                width: 151,
-                                height: 93,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      left: 0,
-                                      top: 0,
-                                      child: Container(
-                                        width: 151,
-                                        height: 93,
-                                        decoration: ShapeDecoration(
-                                          color: Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                          ),
+                    : Padding(
+                padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  //physics:  const NeverScrollableScrollPhysics(),
+                  
+                              itemCount: bikes.length,
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                              itemBuilder: (context, index) {
+                                final bike = bikes[index];
+                                return Container(
+                                  width: 180,
+                                 
+                                  decoration: BoxDecoration(
+                                          color: TColors.white,
+                                          borderRadius: BorderRadius.circular(16)
+                                          
                                         ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 41,
-                                      top: 36,
-                                      child: Container(
-                                        width: 70,
-                                        height: 49,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                bike.picture),
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 14,
-                                      top: 8,
-                                      child: Text(
-                                        bike.brand + bike.name,
-                                        style: TextStyle(
-                                          color: Color(0xFF2A344D),
-                                          fontSize: 10,
-                                          fontFamily: 'Rounded Mplus 1c',
-                                          fontWeight: FontWeight.w900,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 14,
-                                      top: 23,
-                                      child: Text(
-                                        'Ригид',
-                                        style: TextStyle(
-                                          color: Color(0xFFB5B5B5),
-                                          fontSize: 6,
-                                          fontFamily: 'Rounded Mplus 1c',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 131,
-                                      top: 10,
-                                      child: Container(
-                                        width: 12,
-                                        height: 12,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 160,
+                                        padding: const EdgeInsets.all(8),
                                         child: Stack(
                                           children: [
+                                            //image
+
+                                            Center(
+
+                                              child: TRoundedImage(imageUrl: bike.picture, backgroundColor: TColors.white, padding: EdgeInsets.only(top: 34),),
+                                            ),
+                                            
+                                            //text
                                             Positioned(
-                                              left: 0,
                                               top: 0,
-                                              child: Container(
-                                                width: 12,
-                                                height: 12,
-                                                child: Stack(
-                                                  children: [
-                                                    Positioned(
-                                                      left: 0,
-                                                      top: 0,
-                                                      child: Container(
-                                                        width: 12,
-                                                        height: 12,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color: Color.fromARGB(255, 155, 22, 22)),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                              left: 0,
+                                              width: 120,
+                                              child: Text("${bike.brand} ${bike.name}", 
+                                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w100, color: TColors.textColor, fontFamily: "m_plus_extra"),
+                                              textAlign: TextAlign.left,
+                                              maxLines: 1,
                                               ),
                                             ),
+                                            Positioned(
+                                              top: 16,
+                                              left: 0,
+                                              
+                                              child: Text(bike.type, 
+                                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w100, color: TColors.textColorLight, fontFamily: "m_plus"),
+                                              textAlign: TextAlign.left,),
+                                            ),
+                                            Positioned(
+                                              top: 0,
+                                              right: 0,
+                                              child: bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,) : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                            ),
+
                                           ],
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                                        
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                      
+                            ),
+              );
               }
             }),
       );
