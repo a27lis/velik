@@ -66,4 +66,12 @@ class BikeDB {
     log("fetchall ended");
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
+
+  Future<List<Bike>> fetchFavorite() async {
+    log("fetchFavorite start");
+    final database = await DatabaseService().database;
+    final bikes = await database.rawQuery('''SELECT * FROM $tableName WHERE "favorite"=1;''');
+    log("fetchFavorite ended");
+    return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
+  }
 }

@@ -12,5 +12,8 @@ class TAppTheme {
     primaryColor: TColors.accent,
     scaffoldBackgroundColor: TColors.background,
     textTheme: TTextTheme.lightTextTheme,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    hoverColor: Colors.transparent,
   );
 }
