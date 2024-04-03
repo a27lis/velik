@@ -45,26 +45,35 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.only(right: 24.0, left: 24, top: 16),
             child: Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                  color: TColors.white,
+                
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                    color: TColors.white,
+                      ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Очистить избранное"),
+                        Icon(Icons.delete_forever_outlined, size: 30,)
+                      ],
                     ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Очистить избранное"),
-                      Icon(Icons.delete_forever_outlined, size: 30,)
-                    ],
-                  ),
-                  ),
+                    ),
+                
 
                   SizedBox(height: 12,),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                 MaterialPageRoute(builder: (context) => const AboutPage()));
+                      showDialog(
+                      context: context, 
+                      builder: (_) {
+                        return AlertDialog(
+                          content: Text("Это приложение разработано студентом группы МОАИС-О-21/1 Лисейкиной Анастасией на курсе по мобильной разработке с помощью фреймворка Flutter",
+                          style: TextStyle(), textAlign: TextAlign.center,),
+
+                        );
+                      });
                     },
                     child: Container(
                     padding: const EdgeInsets.all(16.0),
