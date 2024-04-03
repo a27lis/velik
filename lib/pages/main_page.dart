@@ -141,7 +141,15 @@ class _MainPageBodyState extends State<MainPageBody> {
                                         Positioned(
                                           top: 0,
                                           right: 0,
-                                          child: bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,) : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                          child: bike.favorite == 1 ? GestureDetector(
+                                            
+                                          onTap: () async {
+                                            await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                            fetchBikes();
+                                          },
+                                            child: SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)) :
+                                             GestureDetector(
+                                              child: SvgPicture.asset("assets/svg/favorite.svg", width: 25,)),
                                         ),
     
                                       ],
@@ -165,4 +173,36 @@ class _MainPageBodyState extends State<MainPageBody> {
   
    ); 
   }
+}
+
+
+class MyGestureDetector extends StatefulWidget {
+  int f = 0;
+
+  MyGestureDetector({super.key, required this.f});
+ @override
+ _MyGestureDetectorState createState() => _MyGestureDetectorState(this.f);
+}
+
+class _MyGestureDetectorState extends State<MyGestureDetector> {
+ int f;
+ String path="";
+ _MyGestureDetectorState(this.f);
+
+ @override
+ Widget build(BuildContext context) {
+    return GestureDetector(
+
+      
+      onTap: () async{
+
+        setState(() {
+          f == 1 ? path = "assets/svg/favorite_blue.svg" : "assets/svg/favorite.svg"; 
+        });
+      },
+      
+        child: SvgPicture.asset(path, width: 25,) // Используем переменную _color для цвета контейнера
+      
+    );
+ }
 }

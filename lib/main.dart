@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
           
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: "Избранное"),
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Главная"),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined, size: 26,), label: "Главная"),
             BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: "Настройки",),
           ],
           elevation: 0,

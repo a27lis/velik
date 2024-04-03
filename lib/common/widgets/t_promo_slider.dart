@@ -17,7 +17,7 @@ class TPromoSlider extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: const EdgeInsets.only(top: 43.0, left: 24, right: 24),
+            padding: const EdgeInsets.only(top: 30.0, left: 24, right: 24),
             child: Column(
               children: [
                 CarouselSlider(

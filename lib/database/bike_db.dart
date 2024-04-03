@@ -74,4 +74,19 @@ class BikeDB {
     log("fetchFavorite ended");
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
+
+  Future<int> update({required int id, int? favorite}) async {
+    int res = favorite == 0 ? 1 : 0;
+    final database = await DatabaseService().database;
+    return await database.update(
+      tableName,
+      {
+        if (favorite != null && favorite == 1) 'favorite': res
+      }, 
+      where: 'id = ?',
+      conflictAlgorithm: ConflictAlgorithm.rollback,
+      whereArgs: [id],       
+       );
+
+  }
 }
