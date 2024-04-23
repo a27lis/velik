@@ -1,12 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
-import 'package:velik/pages/about_page.dart';
 import 'package:velik/utils/constants/colors.dart';
-import 'package:velik/utils/theme/custom_themes/text_theme.dart';
+
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -21,7 +20,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchBikes();
   }
@@ -38,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
     appBar: AppBar(
           
           titleSpacing: 24,
-          title: Text("Настройки"),
+          title: const Text("Настройки"),
         ),
         body: Center(
           child: Padding(
@@ -46,29 +44,66 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               children: [
                 
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                    color: TColors.white,
-                      ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Очистить избранное"),
-                        Icon(Icons.delete_forever_outlined, size: 30,)
-                      ],
-                    ),
-                    ),
-                
-
-                  SizedBox(height: 12,),
                   GestureDetector(
                     onTap: () {
                       showDialog(
                       context: context, 
                       builder: (_) {
                         return AlertDialog(
+                          
+                          backgroundColor: TColors.white,
+                          content: const Text("Очистить избранное?",
+                          style: TextStyle(fontWeight: FontWeight.normal), textAlign: TextAlign.center,),
+                          actions: <Widget>[
+                            TextButton(onPressed: () {Navigator.of(context).pop();},
+                            
+                             style: TextButton.styleFrom(
+                                   minimumSize: Size.zero,
+                                    padding:const EdgeInsets.only(right: 20),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
+                            
+                             child: const Text('Нет', style: TextStyle(color: TColors.textColor, fontSize: 18, fontWeight: FontWeight.normal),),),
+                             TextButton(onPressed: () async {
+                               await bikeDB.undoFavorite();
+                               Navigator.of(context).pop();
+                                },
+                                style: TextButton.styleFrom(
+                                   minimumSize: Size.zero,
+                                   padding: const EdgeInsets.only(right: 5),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                ),
+                            
+                             child: const Text('Да', style: TextStyle(color: TColors.textColor, fontSize: 18, fontWeight: FontWeight.normal))),
+                          ],
+
+                        );
+                      });
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                      color: TColors.white,
+                        ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Очистить избранное"),
+                          Icon(Icons.delete_forever_outlined, size: 30,)
+                        ],
+                      ),
+                      ),
+                  ),
+                
+
+                  const SizedBox(height: 12,),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                      context: context, 
+                      builder: (_) {
+                        return const AlertDialog(
+                            backgroundColor: TColors.white,
                           content: Text("Это приложение разработано студентом группы МОАИС-О-21/1 Лисейкиной Анастасией на курсе по мобильной разработке с помощью фреймворка Flutter",
                           style: TextStyle(), textAlign: TextAlign.center,),
 

@@ -10,8 +10,10 @@ class Bike{
   final String brake;
   final String sizeOfWheels;
   final String equipment;
-  final int favorite;
+  int favorite;
   final String picture;
+
+
 
   Bike({
     required this.id,
@@ -28,6 +30,8 @@ class Bike{
     required this.favorite,
     required this.picture
   });
+
+
 
 
   factory Bike.fromSqfliteDatabase(Map<String, dynamic> map) => Bike(

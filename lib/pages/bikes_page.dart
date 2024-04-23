@@ -4,9 +4,10 @@ import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/utils/constants/colors.dart';
-import 'package:velik/utils/theme/custom_themes/text_theme.dart';
+
 
 class BikesPage extends StatefulWidget {
+  
   const BikesPage({super.key});
 
   @override
@@ -16,10 +17,10 @@ class BikesPage extends StatefulWidget {
 class _BikesPageState extends State<BikesPage> {
   Future<List<Bike>>? futureBikes;
   final bikeDB = BikeDB();
+   
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchBikes();
   }
@@ -98,7 +99,7 @@ class _BikesPageState extends State<BikesPage> {
                                           child: TRoundedImage(
                                             imageUrl: bike.picture,
                                             backgroundColor: TColors.white,
-                                            padding: EdgeInsets.only(top: 34),
+                                            padding: const EdgeInsets.only(top: 34),
                                           ),
                                         ),
 
@@ -134,15 +135,16 @@ class _BikesPageState extends State<BikesPage> {
                                         Positioned(
                                           top: 0,
                                           right: 0,
-                                          child: bike.favorite == 1
-                                              ? SvgPicture.asset(
-                                                  "assets/svg/favorite_blue.svg",
-                                                  width: 25,
-                                                )
-                                              : SvgPicture.asset(
-                                                  "assets/svg/favorite.svg",
-                                                  width: 25,
-                                                ),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                              setState(() {
+                                                bike.favorite == 1 ? bike.favorite = 0 : bike.favorite = 1;
+                                              });
+                                            },
+                                            child:  bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)
+                                          : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                          ),
                                         ),
                                       ],
                                     ),

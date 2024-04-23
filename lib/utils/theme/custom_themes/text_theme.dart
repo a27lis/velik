@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:velik/utils/constants/colors.dart';
 
 class TTextTheme {

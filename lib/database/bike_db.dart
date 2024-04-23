@@ -28,6 +28,7 @@ class BikeDB {
 
   }
 
+
   Future<void> addElements(Database database) async {
 
     //final database = await DatabaseService().database;
@@ -74,6 +75,14 @@ class BikeDB {
     log("fetchFavorite ended");
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
+Future<void> undoFavorite() async {
+  final database = await DatabaseService().database;
+  await database.execute(
+    'UPDATE bikes SET favorite = 0'
+  );
+
+}
+
 
   Future<int> update({required int id, int? favorite}) async {
     int res = favorite == 0 ? 1 : 0;
@@ -81,7 +90,7 @@ class BikeDB {
     return await database.update(
       tableName,
       {
-        if (favorite != null && favorite == 1) 'favorite': res
+        if (favorite != null) 'favorite': res
       }, 
       where: 'id = ?',
       conflictAlgorithm: ConflictAlgorithm.rollback,

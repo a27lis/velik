@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:velik/common/widgets/t_promo_slider.dart';
@@ -34,6 +35,8 @@ class _MainPageBodyState extends State<MainPageBody> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -43,7 +46,7 @@ class _MainPageBodyState extends State<MainPageBody> {
             child: SvgPicture.asset('assets/svg/logo.svg'),
           ),
           titleSpacing: 32,
-          title: Text("VELIK"),
+          title: const Text("VELIK"),
         ),
 
     body: FutureBuilder(
@@ -65,9 +68,18 @@ class _MainPageBodyState extends State<MainPageBody> {
             padding: const EdgeInsets.only(right: 27, top: 40),
             child: 
             GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                 MaterialPageRoute(builder: (context) => const BikesPage()));
+              onTap: () async {
+                     await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const BikesPage()),
+                    );
+                        setState(() {
+                          fetchBikes();
+                        });
+                  
+                    
+                /* Navigator.push(context,
+                 MaterialPageRoute(builder: (context) => const BikesPage())); */
               },
               child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -116,7 +128,7 @@ class _MainPageBodyState extends State<MainPageBody> {
     
                                         Center(
     
-                                          child: TRoundedImage(imageUrl: bike.picture, backgroundColor: TColors.white, padding: EdgeInsets.only(top: 34),),
+                                          child: TRoundedImage(imageUrl: bike.picture, backgroundColor: TColors.white, padding: const EdgeInsets.only(top: 34),),
                                         ),
                                         
                                         //text
@@ -141,15 +153,16 @@ class _MainPageBodyState extends State<MainPageBody> {
                                         Positioned(
                                           top: 0,
                                           right: 0,
-                                          child: bike.favorite == 1 ? GestureDetector(
-                                            
-                                          onTap: () async {
-                                            await bikeDB.update(id: bike.id, favorite: bike.favorite);
-                                            fetchBikes();
-                                          },
-                                            child: SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)) :
-                                             GestureDetector(
-                                              child: SvgPicture.asset("assets/svg/favorite.svg", width: 25,)),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                              setState(() {
+                                                bike.favorite == 1 ? bike.favorite = 0 : bike.favorite = 1;
+                                              });
+                                            },
+                                            child:  bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)
+                                          : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                          )
                                         ),
     
                                       ],
@@ -175,34 +188,3 @@ class _MainPageBodyState extends State<MainPageBody> {
   }
 }
 
-
-class MyGestureDetector extends StatefulWidget {
-  int f = 0;
-
-  MyGestureDetector({super.key, required this.f});
- @override
- _MyGestureDetectorState createState() => _MyGestureDetectorState(this.f);
-}
-
-class _MyGestureDetectorState extends State<MyGestureDetector> {
- int f;
- String path="";
- _MyGestureDetectorState(this.f);
-
- @override
- Widget build(BuildContext context) {
-    return GestureDetector(
-
-      
-      onTap: () async{
-
-        setState(() {
-          f == 1 ? path = "assets/svg/favorite_blue.svg" : "assets/svg/favorite.svg"; 
-        });
-      },
-      
-        child: SvgPicture.asset(path, width: 25,) // Используем переменную _color для цвета контейнера
-      
-    );
- }
-}

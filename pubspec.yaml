@@ -16,6 +16,7 @@ dependencies:
   flutter_svg: 2.0.10
   carousel_slider: 4.2.1
   get: 4.6.6
+  provider: ^6.1.2
   
 
 dev_dependencies:

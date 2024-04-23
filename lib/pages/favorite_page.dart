@@ -4,7 +4,7 @@ import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/utils/constants/colors.dart';
-import 'package:velik/utils/theme/custom_themes/text_theme.dart';
+
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -19,7 +19,6 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchBikes();
   }
@@ -35,7 +34,7 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
           titleSpacing: 24,
-          title: Text("Избранное"),
+          title: const Text("Избранное"),
         ),
         body: FutureBuilder<List<Bike>>(
             future: futureBikes,
@@ -108,7 +107,16 @@ class _FavoritePageState extends State<FavoritePage> {
                                             Positioned(
                                               top: 0,
                                               right: 0,
-                                              child: bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,) : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                              child: GestureDetector(
+                                            onTap: () async {
+                                              await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                              setState(() {
+                                                bike.favorite == 1 ? bike.favorite = 0 : bike.favorite = 1;
+                                              });
+                                            },
+                                            child:  bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)
+                                          : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                          ),
                                             ),
 
                                           ],

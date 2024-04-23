@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-import 'package:velik/common/widgets/t_promo_slider.dart';
-import 'package:velik/common/widgets/t_rounded_image.dart';
-import 'package:velik/database/bike_db.dart';
-import 'package:velik/model/bike.dart';
-import 'package:velik/pages/bikes_page.dart';
 import 'package:velik/pages/favorite_page.dart';
 import 'package:velik/pages/main_page.dart';
 import 'package:velik/pages/settings_page.dart';
 import 'package:velik/utils/constants/colors.dart';
-import 'package:velik/utils/theme/custom_themes/text_theme.dart';
 
 import 'package:velik/utils/theme/theme.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 void main() {
   runApp(const App());
@@ -63,21 +55,6 @@ class _HomePageState extends State<HomePage> {
     });
  }
 
-  // Future<List<Bike>>? futureBikes;
-  // final bikeDB = BikeDB();
-  
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchBikes();
-    
-  // }
-  // void fetchBikes() {
-  //   setState(() {
-  //     futureBikes = bikeDB.fetchAll();
-      
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
