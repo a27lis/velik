@@ -50,21 +50,17 @@ class _FavoritePageState extends State<FavoritePage> {
                       )
                     : Padding(
                 padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
-                child: GridView.builder(
+                child: ListView.builder(
                   shrinkWrap: true,
                   //physics:  const NeverScrollableScrollPhysics(),
                   
                               itemCount: bikes.length,
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                              ),
                               itemBuilder: (context, index) {
                                 final bike = bikes[index];
 
                                 return Container(
                                   width: 180,
+                                  margin: EdgeInsets.only(bottom: 8),
                                  
                                   decoration: BoxDecoration(
                                           color: TColors.white,
@@ -74,39 +70,25 @@ class _FavoritePageState extends State<FavoritePage> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 160,
+                                        height: 52,
                                         padding: const EdgeInsets.all(8),
                                         child: Stack(
-                                          children: [
-                                            //image
-
-                                            Center(
-
-                                              child: TRoundedImage(imageUrl: bike.picture, backgroundColor: TColors.white, padding: EdgeInsets.only(top: 34),),
-                                            ),
-                                            
-                                            //text
+                                          children: [                               
+                                             //text
                                             Positioned(
-                                              top: 0,
+                                              top: 5,
                                               left: 0,
-                                              width: 120,
+                                              width: 260,
                                               child: Text("${bike.brand} ${bike.name}", 
-                                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w100, color: TColors.textColor, fontFamily: "m_plus_extra"),
+                                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: TColors.textColor, fontFamily: "m_plus"),
                                               textAlign: TextAlign.left,
                                               maxLines: 1,
                                               ),
                                             ),
+                                            
                                             Positioned(
-                                              top: 16,
-                                              left: 0,
-                                              
-                                              child: Text(bike.type, 
-                                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w100, color: TColors.textColorLight, fontFamily: "m_plus"),
-                                              textAlign: TextAlign.left,),
-                                            ),
-                                            Positioned(
-                                              top: 0,
-                                              right: 0,
+                                              top: 5,
+                                              right: 5,
                                               child: GestureDetector(
                                             onTap: () async {
                                               await bikeDB.update(id: bike.id, favorite: bike.favorite);
