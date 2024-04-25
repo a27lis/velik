@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/utils/constants/colors.dart';

@@ -1,15 +1,26 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:velik/common/widgets/t_circular_container.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/features/controllers/home_controller.dart';
 import 'package:velik/utils/constants/colors.dart';
 
 class TPromoSlider extends StatelessWidget {
+  
   const TPromoSlider({
     super.key,
+    required this.imageUrl1,
+    required this.imageUrl2,
+    required this.imageUrl3,
+    
+
   });
+  final String imageUrl1;
+  final String imageUrl2;
+  final String imageUrl3;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +36,10 @@ class TPromoSlider extends StatelessWidget {
                       viewportFraction: 1,
                       onPageChanged: (index, _) =>
                           controller.updatePageIndicator(index)),
-                  items: const [
-                    TRoundedImage(imageUrl: "assets/images/gallery1.png"),
-                    TRoundedImage(imageUrl: "assets/images/gallery2.png"),
-                    TRoundedImage(imageUrl: "assets/images/gallery3.png"),
+                  items: [
+                    TRoundedImage(imageUrl: imageUrl1, backgroundColor: Colors.transparent,),
+                    TRoundedImage(imageUrl: imageUrl2, backgroundColor: Colors.transparent,),
+                    TRoundedImage(imageUrl: imageUrl3, backgroundColor: Colors.transparent,),
                   ],
                 ),
                 const SizedBox(height: 8),

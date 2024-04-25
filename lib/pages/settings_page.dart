@@ -50,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       context: context, 
                       builder: (_) {
                         return AlertDialog(
-                          
+                         
                           backgroundColor: TColors.white,
                           content: const Text("Очистить избранное?",
                           style: TextStyle(fontWeight: FontWeight.normal), textAlign: TextAlign.center,),

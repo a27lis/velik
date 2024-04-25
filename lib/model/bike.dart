@@ -12,6 +12,9 @@ class Bike{
   final String equipment;
   int favorite;
   final String picture;
+  final String picture2;
+  final String picture3;
+
 
 
 
@@ -28,7 +31,10 @@ class Bike{
     required this.sizeOfWheels,
     required this.equipment, 
     required this.favorite,
-    required this.picture
+    required this.picture,
+    required this.picture2,
+    required this.picture3
+
   });
 
 
@@ -48,6 +54,8 @@ class Bike{
     equipment: map['equipment'] ?? '',
     favorite: map['favorite']?.toInt() ?? 0,
     picture: map['picture'] ?? '',
+    picture2: map['picture2'] ?? '',
+    picture3: map['picture3'] ?? ''
     );
 
 
