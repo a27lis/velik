@@ -104,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       builder: (_) {
                         return const AlertDialog(
                             backgroundColor: TColors.white,
-                          content: Text("Это приложение разработано студентом группы МОАИС-О-21/1 Лисейкиной Анастасией на курсе по мобильной разработке с помощью фреймворка Flutter",
+                          content: Text("Это приложение разработала студент группы МОАИС-О-21/1 Лисейкина Анастасия в ходе курса по мобильной разработке. \nРеализовано с помощью фреймворка Flutter.",
                           style: TextStyle(), textAlign: TextAlign.center,),
 
                         );

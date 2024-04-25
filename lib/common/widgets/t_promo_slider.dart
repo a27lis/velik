@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:velik/common/widgets/t_circular_container.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/features/controllers/home_controller.dart';

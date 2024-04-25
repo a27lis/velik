@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:velik/common/widgets/t_promo_slider.dart';
-import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/utils/constants/colors.dart';
@@ -136,32 +134,32 @@ class _ItemPageState extends State<ItemPage> {
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       
                                                       children: [
-                                                      Text("Рама", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.frame, style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Рама", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.frame, style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Вилка", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.fork, style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Вилка", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.fork, style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Количество скоростей", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.speed.toString(), style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Количество скоростей", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.speed.toString(), style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Покрышки", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.tires, style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Покрышки", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.tires, style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Тип тормозов", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.brake, style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Тип тормозов", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.brake, style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Размер колес в дюймах", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.sizeOfWheels, style: TextStyle(fontWeight: FontWeight.w900),),
-                                                      SizedBox(height: 14,),
+                                                      const Text("Размер колес в дюймах", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.sizeOfWheels, style: const TextStyle(fontWeight: FontWeight.w900),),
+                                                      const SizedBox(height: 14,),
                                                                                   
-                                                      Text("Уровень оборудования", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
-                                                      Text(bike.equipment, style: TextStyle(fontWeight: FontWeight.w900),),
+                                                      const Text("Уровень оборудования", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w100, color: TColors.textColorLight), ),
+                                                      Text(bike.equipment, style: const TextStyle(fontWeight: FontWeight.w900),),
                                                     ],),
                                                   ),
                                                 )
