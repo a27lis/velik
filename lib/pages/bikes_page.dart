@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
+import 'package:velik/features/controllers/home_controller.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/pages/item_page.dart';
 import 'package:velik/utils/constants/colors.dart';
@@ -89,6 +91,7 @@ class _BikesPageState extends State<BikesPage> {
                                 Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
                                 setState(() {
+                                  Get.find<HomeController>().updatePageIndicator(0);
                           fetchBikes();
                         });
                               },

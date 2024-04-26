@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:velik/common/widgets/t_promo_slider.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/database/bike_db.dart';
+import 'package:velik/features/controllers/home_controller.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/pages/bikes_page.dart';
 import 'package:velik/pages/item_page.dart';
@@ -26,6 +28,7 @@ class _MainPageBodyState extends State<MainPageBody> {
   void initState() {
     super.initState();
     fetchBikes();
+    
     
   }
   void fetchBikes() {
@@ -63,7 +66,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                       : SingleChildScrollView(
       child: Column(
         children: [
-          const TPromoSlider(imageUrl1: "assets/images/gallery1.png",
+           TPromoSlider(imageUrl1: "assets/images/gallery1.png",
            imageUrl2: "assets/images/gallery2.png",
            imageUrl3: "assets/images/gallery3.png" ),
           Padding(
@@ -77,6 +80,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                     );
                         setState(() {
                           fetchBikes();
+                          
                         });
                   
               },
@@ -117,6 +121,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
                                 setState(() {
                                   fetchBikes();
+                                  Get.find<HomeController>().updatePageIndicator(0);
                                 });
                               },
                               child: Container(

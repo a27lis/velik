@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:velik/common/widgets/t_promo_slider.dart';
 import 'package:velik/database/bike_db.dart';
+import 'package:velik/features/controllers/home_controller.dart';
 import 'package:velik/model/bike.dart';
 import 'package:velik/utils/constants/colors.dart';
 
@@ -24,8 +26,16 @@ class _ItemPageState extends State<ItemPage> {
   void initState() {
     super.initState();
     fetchBike();
+    
+    
   }
 
+void updCarousel() {
+  setState(() {
+    Get.find<HomeController>().updatePageIndicator(0);
+  });
+  
+}
   void fetchBike() {
     setState(() {
       futureBikes = bikeDB.fetchBike(id: widget.id);
@@ -57,6 +67,7 @@ class _ItemPageState extends State<ItemPage> {
               } else {
                 final bikes = snapshot.data!;
                 final bike = bikes[0];
+                
 
                 return bikes.isEmpty
                     ? const Center(

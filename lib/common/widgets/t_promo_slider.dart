@@ -7,8 +7,9 @@ import 'package:velik/features/controllers/home_controller.dart';
 import 'package:velik/utils/constants/colors.dart';
 
 class TPromoSlider extends StatelessWidget {
+  final CarouselController _carouselController = CarouselController();
   
-  const TPromoSlider({
+  TPromoSlider({
     super.key,
     required this.imageUrl1,
     required this.imageUrl2,
@@ -19,9 +20,12 @@ class TPromoSlider extends StatelessWidget {
   final String imageUrl1;
   final String imageUrl2;
   final String imageUrl3;
+  
 
   @override
   Widget build(BuildContext context) {
+    
+    
     final controller = Get.put(HomeController());
     return Column(
       children: [
@@ -30,10 +34,13 @@ class TPromoSlider extends StatelessWidget {
             child: Column(
               children: [
                 CarouselSlider(
+                  carouselController: _carouselController,
                   options: CarouselOptions(
                       viewportFraction: 1,
                       onPageChanged: (index, _) =>
-                          controller.updatePageIndicator(index)),
+                          controller.updatePageIndicator(index),
+                          initialPage: 0),
+                          
                   items: [
                     TRoundedImage(imageUrl: imageUrl1, backgroundColor: Colors.transparent,),
                     TRoundedImage(imageUrl: imageUrl2, backgroundColor: Colors.transparent,),
