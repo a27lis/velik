@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:velik/common/widgets/t_circular_container.dart';
 import 'package:velik/common/widgets/t_rounded_image.dart';
 import 'package:velik/features/controllers/home_controller.dart';
+import 'package:velik/pages/bikes_page.dart';
+import 'package:velik/pages/item_page.dart';
 import 'package:velik/utils/constants/colors.dart';
 
 class TPromoSlider extends StatelessWidget {
@@ -42,9 +46,38 @@ class TPromoSlider extends StatelessWidget {
                           initialPage: 0),
                           
                   items: [
-                    TRoundedImage(imageUrl: imageUrl1, backgroundColor: Colors.transparent,),
-                    TRoundedImage(imageUrl: imageUrl2, backgroundColor: Colors.transparent,),
-                    TRoundedImage(imageUrl: imageUrl3, backgroundColor: Colors.transparent,),
+                    GestureDetector(
+                      onTap: () {
+                        if (imageUrl1 == "assets/images/gallery1.png") {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ItemPage(id: 1)),
+                        );
+                        } else {}
+                      },
+                      child: TRoundedImage(imageUrl: imageUrl1, backgroundColor: Colors.transparent,)),
+                    GestureDetector(
+                      onTap: () {
+                        if (imageUrl2 == "assets/images/gallery2.png") {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ItemPage(id: 3)),
+                        );
+                        } else {}
+                      },
+                      child: TRoundedImage(imageUrl: imageUrl3, backgroundColor: Colors.transparent,)),
+                      GestureDetector(
+                      onTap: () {
+                        if (imageUrl3 == "assets/images/gallery3.png") {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ItemPage(id: 7)),
+                        
+                        );
+                        } else {}
+                      },
+                      child: TRoundedImage(imageUrl: imageUrl2, backgroundColor: Colors.transparent,)),
+                    
                   ],
                 ),
                 const SizedBox(height: 8),
