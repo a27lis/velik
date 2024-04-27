@@ -65,7 +65,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
                                 setState(() {
                                   fetchBikes();
-                                  
+                                  Get.find<HomeController>().updatePageIndicator(0);
                                 });
                                   },
                                   child: Container(

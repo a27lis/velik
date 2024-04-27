@@ -93,8 +93,8 @@ class _BikesPageState extends State<BikesPage> {
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
                                 setState(() {
                                   Get.find<HomeController>().updatePageIndicator(0);
-                          fetchBikes();
-                        });
+                                  fetchBikes();
+                                });
                               },
                               child: Container(
                                 width: 180,
