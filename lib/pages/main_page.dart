@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:velik/common/widgets/t_promo_slider.dart';
@@ -66,9 +67,11 @@ class _MainPageBodyState extends State<MainPageBody> {
                       : SingleChildScrollView(
       child: Column(
         children: [
-           TPromoSlider(imageUrl1: "assets/images/gallery1.png",
-           imageUrl2: "assets/images/gallery2.png",
-           imageUrl3: "assets/images/gallery3.png" ),
+           GestureDetector(
+             child: const TPromoSlider(imageUrl1: "assets/images/gallery1.png",
+             imageUrl2: "assets/images/gallery2.png",
+             imageUrl3: "assets/images/gallery3.png" ),
+           ),
           Padding(
             padding: const EdgeInsets.only(right: 27, top: 40),
             child: 
@@ -80,7 +83,6 @@ class _MainPageBodyState extends State<MainPageBody> {
                     );
                         setState(() {
                           fetchBikes();
-                          
                         });
                   
               },
@@ -116,7 +118,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                             final bike = bikes[index];
                             return GestureDetector(
                               onTap: () async {
-                                     
+                               Get.find<HomeController>().updatePageIndicator(0);                                   
                                 await Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
                                 setState(() {

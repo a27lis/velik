@@ -87,6 +87,7 @@ class _BikesPageState extends State<BikesPage> {
                             
                             return GestureDetector(
                               onTap: () async {
+                                Get.find<HomeController>().updatePageIndicator(0); 
                                 await     
                                 Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));

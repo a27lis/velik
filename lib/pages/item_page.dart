@@ -28,6 +28,7 @@ class _ItemPageState extends State<ItemPage> {
     fetchBike();
     
     
+    
   }
 
 void updCarousel() {
