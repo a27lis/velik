@@ -102,10 +102,19 @@ class _SettingsPageState extends State<SettingsPage> {
                       showDialog(
                       context: context, 
                       builder: (_) {
-                        return const AlertDialog(
+                        return AlertDialog(
+                          contentPadding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 10),
+                          icon: SvgPicture.asset('assets/svg/logo.svg', width: 30,),
+                          
+                          
                             backgroundColor: TColors.white,
-                          content: Text("Это приложение разработала студент группы МОАИС-О-21/1 Лисейкина Анастасия в ходе курса по мобильной разработке. \nРеализовано с помощью фреймворка Flutter.",
-                          style: TextStyle(), textAlign: TextAlign.center,),
+                          content: const Text("""Приложение разработала студентка группы МОАИС Лисейкина Анастасия
+в ходе курса мобильной разработки. 
+Приложение реализовано с помощью фреймворка Flutter и СУБД SQLite.
+Инструмент для State Managment - GetX.
+Карусель реализована с помощью carousel_slider."""
+                           ,
+                          style: TextStyle( fontSize: 20), textAlign: TextAlign.center,),
 
                         );
                       });
