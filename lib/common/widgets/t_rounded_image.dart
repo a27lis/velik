@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:velik/utils/constants/colors.dart';
 
@@ -16,7 +15,6 @@ class TRoundedImage extends StatelessWidget {
     this.backgroundColor = TColors.background,
     this.isNetworkImage = false,
     this.borderRadius = 16,
-    
   });
 
   final double? width, height;
@@ -37,13 +35,20 @@ class TRoundedImage extends StatelessWidget {
         width: width,
         height: height,
         padding: padding,
-        decoration: BoxDecoration(border: border, color: backgroundColor, borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(
+            border: border,
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(16)),
         child: ClipRRect(
-            borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-            child: Image(
-              fit: fit, image: isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl) as ImageProvider),
-              
-            ),
+          borderRadius: applyImageRadius
+              ? BorderRadius.circular(borderRadius)
+              : BorderRadius.zero,
+          child: Image(
+              fit: fit,
+              image: isNetworkImage
+                  ? NetworkImage(imageUrl)
+                  : AssetImage(imageUrl) as ImageProvider),
+        ),
       ),
     );
   }

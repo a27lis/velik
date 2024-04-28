@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:velik/utils/constants/colors.dart';
 
-
-
 class TAppBarTheme {
   TAppBarTheme._();
 
@@ -13,10 +11,13 @@ class TAppBarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: TColors.background, // Цвет статусной строки
+      statusBarColor: TColors.background, 
       statusBarIconBrightness: Brightness.dark,
-      ),
-    titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: TColors.textColor, fontFamily: "m_plus_extra"),
-
+    ),
+    titleTextStyle: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: TColors.textColor,
+        fontFamily: "m_plus_extra"),
   );
 }

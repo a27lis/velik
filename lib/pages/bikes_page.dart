@@ -8,9 +8,7 @@ import 'package:velik/model/bike.dart';
 import 'package:velik/pages/item_page.dart';
 import 'package:velik/utils/constants/colors.dart';
 
-
 class BikesPage extends StatefulWidget {
-  
   const BikesPage({super.key});
 
   @override
@@ -20,7 +18,6 @@ class BikesPage extends StatefulWidget {
 class _BikesPageState extends State<BikesPage> {
   Future<List<Bike>>? futureBikes;
   final bikeDB = BikeDB();
-   
 
   @override
   void initState() {
@@ -84,15 +81,19 @@ class _BikesPageState extends State<BikesPage> {
                           ),
                           itemBuilder: (context, index) {
                             final bike = bikes[index];
-                            
+
                             return GestureDetector(
                               onTap: () async {
-                                Get.find<HomeController>().updatePageIndicator(0); 
-                                await     
-                                Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
+                                Get.find<HomeController>()
+                                    .updatePageIndicator(0);
+                                await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ItemPage(id: bike.id)));
                                 setState(() {
-                                  Get.find<HomeController>().updatePageIndicator(0);
+                                  Get.find<HomeController>()
+                                      .updatePageIndicator(0);
                                   fetchBikes();
                                 });
                               },
@@ -109,15 +110,16 @@ class _BikesPageState extends State<BikesPage> {
                                       child: Stack(
                                         children: [
                                           //image
-                              
+
                                           Center(
                                             child: TRoundedImage(
                                               imageUrl: bike.picture,
                                               backgroundColor: TColors.white,
-                                              padding: const EdgeInsets.only(top: 34),
+                                              padding: const EdgeInsets.only(
+                                                  top: 34),
                                             ),
                                           ),
-                              
+
                                           //text
                                           Positioned(
                                             top: 0,
@@ -152,13 +154,24 @@ class _BikesPageState extends State<BikesPage> {
                                             right: 0,
                                             child: GestureDetector(
                                               onTap: () async {
-                                                await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                                await bikeDB.update(
+                                                    id: bike.id,
+                                                    favorite: bike.favorite);
                                                 setState(() {
-                                                  bike.favorite == 1 ? bike.favorite = 0 : bike.favorite = 1;
+                                                  bike.favorite == 1
+                                                      ? bike.favorite = 0
+                                                      : bike.favorite = 1;
                                                 });
                                               },
-                                              child:  bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)
-                                            : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                              child: bike.favorite == 1
+                                                  ? SvgPicture.asset(
+                                                      "assets/svg/favorite_blue.svg",
+                                                      width: 25,
+                                                    )
+                                                  : SvgPicture.asset(
+                                                      "assets/svg/favorite.svg",
+                                                      width: 25,
+                                                    ),
                                             ),
                                           ),
                                         ],

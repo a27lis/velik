@@ -1,19 +1,17 @@
 import 'dart:developer';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:velik/database/bike_db.dart';
 
 class DatabaseService {
-Database? _database;
+  Database? _database;
 
   Future<Database> get database async {
     if (_database != null) {
       return _database!;
     }
     _database = await _initialize();
-    
-    
+
     return _database!;
   }
 
@@ -26,22 +24,18 @@ Database? _database;
   Future<Database> _initialize() async {
     final path = await fullPath;
     var database = await openDatabase(
-      path, 
+      path,
       version: 1,
       onCreate: create,
       singleInstance: true,
-      );
-      return database;
-
+    );
+    return database;
   }
 
   Future<void> create(Database database, int version) async {
-
     await BikeDB().createTable(database);
     log("create table in create");
     await BikeDB().addElements(database);
     log("add elements in create");
-
   }
-    
 }

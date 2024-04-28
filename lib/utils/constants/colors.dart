@@ -9,6 +9,4 @@ class TColors {
   static const Color textColorLight = Color(0xFFB5B5B5);
   static const Color lightGrey = Color(0xFFD9D9D9);
   static const Color white = Color(0xFFFFFFFF);
-  
-
 }

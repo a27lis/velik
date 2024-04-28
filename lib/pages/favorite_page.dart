@@ -7,7 +7,6 @@ import 'package:velik/model/bike.dart';
 import 'package:velik/pages/item_page.dart';
 import 'package:velik/utils/constants/colors.dart';
 
-
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
 
@@ -31,10 +30,9 @@ class _FavoritePageState extends State<FavoritePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
+        appBar: AppBar(
           titleSpacing: 24,
           title: const Text("Избранное"),
         ),
@@ -51,78 +49,91 @@ class _FavoritePageState extends State<FavoritePage> {
                         child: Text('Нет велосипедов'),
                       )
                     : Padding(
-                padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  //physics:  const NeverScrollableScrollPhysics(),
-                  
-                              itemCount: bikes.length,
-                              itemBuilder: (context, index) {
-                                final bike = bikes[index];
-                                return GestureDetector(
-                                  onTap: () async {
-                                await Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => ItemPage(id: bike.id)));
+                        padding:
+                            const EdgeInsets.only(top: 24, left: 24, right: 24),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: bikes.length,
+                          itemBuilder: (context, index) {
+                            final bike = bikes[index];
+                            return GestureDetector(
+                              onTap: () async {
+                                await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ItemPage(id: bike.id)));
                                 setState(() {
                                   fetchBikes();
-                                  Get.find<HomeController>().updatePageIndicator(0);
+                                  Get.find<HomeController>()
+                                      .updatePageIndicator(0);
                                 });
-                                  },
-                                  child: Container(
-                                    width: 180,
-                                    margin: EdgeInsets.only(bottom: 8),
-                                   
-                                    decoration: BoxDecoration(
-                                            color: TColors.white,
-                                            borderRadius: BorderRadius.circular(16)
-                                            
+                              },
+                              child: Container(
+                                width: 180,
+                                margin: const EdgeInsets.only(bottom: 8),
+                                decoration: BoxDecoration(
+                                    color: TColors.white,
+                                    borderRadius: BorderRadius.circular(16)),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 52,
+                                      padding: const EdgeInsets.all(8),
+                                      child: Stack(
+                                        children: [
+                                          //text
+                                          Positioned(
+                                            top: 5,
+                                            left: 0,
+                                            width: 260,
+                                            child: Text(
+                                              "${bike.brand} ${bike.name}",
+                                              style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: TColors.textColor,
+                                                  fontFamily: "m_plus"),
+                                              textAlign: TextAlign.left,
+                                              maxLines: 1,
+                                            ),
                                           ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: 52,
-                                          padding: const EdgeInsets.all(8),
-                                          child: Stack(
-                                            children: [                               
-                                               //text
-                                              Positioned(
-                                                top: 5,
-                                                left: 0,
-                                                width: 260,
-                                                child: Text("${bike.brand} ${bike.name}", 
-                                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: TColors.textColor, fontFamily: "m_plus"),
-                                                textAlign: TextAlign.left,
-                                                maxLines: 1,
-                                                ),
-                                              ),
-                                              
-                                              Positioned(
-                                                top: 5,
-                                                right: 5,
-                                                child: GestureDetector(
+
+                                          Positioned(
+                                            top: 5,
+                                            right: 5,
+                                            child: GestureDetector(
                                               onTap: () async {
-                                                await bikeDB.update(id: bike.id, favorite: bike.favorite);
+                                                await bikeDB.update(
+                                                    id: bike.id,
+                                                    favorite: bike.favorite);
                                                 setState(() {
-                                                  bike.favorite == 1 ? bike.favorite = 0 : bike.favorite = 1;
+                                                  bike.favorite == 1
+                                                      ? bike.favorite = 0
+                                                      : bike.favorite = 1;
                                                 });
                                               },
-                                              child:  bike.favorite == 1 ? SvgPicture.asset("assets/svg/favorite_blue.svg", width: 25,)
-                                            : SvgPicture.asset("assets/svg/favorite.svg", width: 25,),
+                                              child: bike.favorite == 1
+                                                  ? SvgPicture.asset(
+                                                      "assets/svg/favorite_blue.svg",
+                                                      width: 25,
+                                                    )
+                                                  : SvgPicture.asset(
+                                                      "assets/svg/favorite.svg",
+                                                      width: 25,
+                                                    ),
                                             ),
-                                              ),
-                                  
-                                            ],
                                           ),
-                                          
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                      
-                            ),
-              );
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
               }
             }),
       );

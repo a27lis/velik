@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:velik/database/database_service.dart';
 import 'package:velik/model/bike.dart';
@@ -27,16 +25,11 @@ class BikeDB {
       PRIMARY KEY("id" AUTOINCREMENT));
       
     """);
-
   }
 
-
   Future<void> addElements(Database database) async {
-
-    //final database = await DatabaseService().database;
-    log("add el");
-
-    await database.rawInsert("""INSERT INTO $tableName (brand, name, type, frame, fork, speed, tires, brake, sizeOfWheels, equipment, favorite, picture, picture2, picture3) 
+    await database.rawInsert(
+        """INSERT INTO $tableName (brand, name, type, frame, fork, speed, tires, brake, sizeOfWheels, equipment, favorite, picture, picture2, picture3) 
  VALUES
 ('Outleap','Machine','BMX','Сплав Cro-Mo','Outleap, стальная', 1 ,'CST Operative 20x2.40','Клещевые','20','Начальный улучшенный',
 1,
@@ -85,54 +78,42 @@ class BikeDB {
  'assets/images/gt_labomba_pro3.png')
 
 """);
-
-
   }
 
   Future<List<Bike>> fetchAll() async {
-    log("fetchall start");
     final database = await DatabaseService().database;
     final bikes = await database.rawQuery('''SELECT * FROM $tableName;''');
-    log("fetchall ended");
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
 
-   Future<List<Bike>> fetchBike({required int id}) async {
-    log("fetchBike start");
+  Future<List<Bike>> fetchBike({required int id}) async {
     final database = await DatabaseService().database;
-    final bikes = await database.rawQuery('''SELECT * FROM $tableName WHERE "id"=$id;''');
-    log("fetchBike ended");
+    final bikes =
+        await database.rawQuery('''SELECT * FROM $tableName WHERE "id"=$id;''');
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
 
   Future<List<Bike>> fetchFavorite() async {
-    log("fetchFavorite start");
     final database = await DatabaseService().database;
-    final bikes = await database.rawQuery('''SELECT * FROM $tableName WHERE "favorite"=1;''');
-    log("fetchFavorite ended");
+    final bikes = await database
+        .rawQuery('''SELECT * FROM $tableName WHERE "favorite"=1;''');
     return bikes.map((bike) => Bike.fromSqfliteDatabase(bike)).toList();
   }
-Future<void> undoFavorite() async {
-  final database = await DatabaseService().database;
-  await database.execute(
-    'UPDATE bikes SET favorite = 0'
-  );
 
-}
-
+  Future<void> undoFavorite() async {
+    final database = await DatabaseService().database;
+    await database.execute('UPDATE bikes SET favorite = 0');
+  }
 
   Future<int> update({required int id, int? favorite}) async {
     int res = favorite == 0 ? 1 : 0;
     final database = await DatabaseService().database;
     return await database.update(
       tableName,
-      {
-        if (favorite != null) 'favorite': res
-      }, 
+      {if (favorite != null) 'favorite': res},
       where: 'id = ?',
       conflictAlgorithm: ConflictAlgorithm.rollback,
-      whereArgs: [id],       
-       );
-
+      whereArgs: [id],
+    );
   }
 }

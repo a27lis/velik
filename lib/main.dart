@@ -3,7 +3,6 @@ import 'package:velik/pages/favorite_page.dart';
 import 'package:velik/pages/main_page.dart';
 import 'package:velik/pages/settings_page.dart';
 import 'package:velik/utils/constants/colors.dart';
-
 import 'package:velik/utils/theme/theme.dart';
 
 
@@ -44,7 +43,6 @@ class _HomePageState extends State<HomePage> {
     const FavoritePage(),
     const MainPageBody(),
     const SettingsPage(),
-    // Добавьте здесь другие экраны
  ];
 
 
@@ -76,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: TColors.background,
           unselectedItemColor: TColors.textColor,
           showUnselectedLabels: false,
-          selectedLabelStyle: TextStyle(fontFamily: 'm_plus', fontSize: 14, fontWeight: FontWeight.bold),
+          selectedLabelStyle: const TextStyle(fontFamily: 'm_plus', fontSize: 14, fontWeight: FontWeight.bold),
         ),
         );
   }

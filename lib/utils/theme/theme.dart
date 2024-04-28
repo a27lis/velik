@@ -5,7 +5,7 @@ import 'package:velik/utils/theme/custom_themes/text_theme.dart';
 
 class TAppTheme {
   TAppTheme._();
-  
+
   static ThemeData lightTheme = ThemeData(
     appBarTheme: TAppBarTheme.lightAppBarTheme,
     useMaterial3: true,
